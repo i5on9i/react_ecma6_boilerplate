@@ -1,2 +1,9 @@
 # react_ecma6_boilerplate
-boilerplate for ReactJS and ECMA 6
+This is boilerplate which uss the below modules
+
+- react / jsx
+- babel
+- webpack
+
+
+
