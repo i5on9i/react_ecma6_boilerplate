@@ -1,5 +1,5 @@
 var gulp = require("gulp");
-// var gutil = require("gulp-util");
+var gutil = require("gulp-util");
 
 var path = require('path');
 var webpack = require("webpack");
@@ -7,11 +7,11 @@ var webpack = require("webpack");
 var sequence = require('run-sequence');
 
 var config = require('./webpack.config.js');
-// var devConfig = require('./webpack.dev.config.js');
 
 
 
 var release_dir = './release'
+
 
 /**------------------------------------------------
  * task release-js
@@ -35,21 +35,20 @@ gulp.task("release-js", function() {
 // 			'./src/css/*.css',
 // 			'./node_modules/font-awesome/css/font-awesome.css',
 // 		])
-// 		.pipe(gulp.dest(static_dir + '/css'))
+// 		.pipe(gulp.dest(release_dir + '/css'))
 
 // 	// copy fonts
 // 	gulp.src([
 // 			'./node_modules/font-awesome/fonts/*.*',
 // 		])
-// 		.pipe(gulp.dest(static_dir + '/fonts'))
+// 		.pipe(gulp.dest(release_dir + '/fonts'))
 // 	gulp.src([
 // 			'./node_modules/bootstrap/fonts/*.*',
 // 		])
-// 		.pipe(gulp.dest(static_dir + '/fonts/bootstrap'))
+// 		.pipe(gulp.dest(release_dir + '/fonts/bootstrap'))
 
 
 // })
-
 
 
 /**------------------------------------------------
@@ -60,11 +59,9 @@ gulp.task("webpack", function(callback) {
 	// run webpack
 	return webpack(config).run(function(err, stats) {
 		if(err) throw new gutil.PluginError("webpack", err);
-
-		console.log("webpack is run")
-		// gutil.log("[webpack]", stats.toString({
-		// 	// output options
-		// }));
+		gutil.log("[webpack]", stats.toString({
+			// output options
+		}));
 		callback();
 		
 	});
@@ -80,7 +77,7 @@ gulp.task("webpack", function(callback) {
  */
 gulp.task("webpack-dev", ['webpack'], function(callback) {
 	sequence('release-js', callback)
-	return;
+
 })
 
 
