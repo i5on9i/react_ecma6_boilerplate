@@ -5,8 +5,9 @@ export const ajaxSend = (options)=>{
     
     var xhr = new XMLHttpRequest();
 	
+    let _type = type || 'GET';
     xhr.open(type, encodeURI(url));
-	xhr.responseType = dataType;
+	xhr.responseType = dataType || '';
     
     // User-Agent
     // the below does not work, see background.js to change user-agent
@@ -15,7 +16,7 @@ export const ajaxSend = (options)=>{
     xhr.onload = function() {
         if (xhr.status === 200) {
             if(success !== 'undefined'){
-                success(xhr.responseText)    
+                success(xhr.response)    
             }
             
         }
