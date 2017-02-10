@@ -15,13 +15,14 @@ export const ajaxSend = (options)=>{
     
     xhr.onload = function() {
         if (xhr.status === 200) {
-            if(success !== 'undefined'){
+            if(typeof success !== 'undefined'){
                 success(xhr.response)    
             }
             
         }
         else {
-            if(error !== 'undefined'){
+            console.error(`${xhr.status} / ${xhr.statusText}`)
+            if(typeof error !== 'undefined'){
                 error(xhr, xhr.status)    
             }
         }
